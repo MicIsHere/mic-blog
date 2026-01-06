@@ -1,4 +1,4 @@
-name: Akismet Discussion Comment Checker (GraphQL)
+name: Akismet Discussion Comment Checker
 on:
   discussion_comment:
     types: [created]
