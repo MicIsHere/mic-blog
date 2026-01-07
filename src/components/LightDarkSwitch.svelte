@@ -31,9 +31,24 @@ onMount(() => {
 	};
 });
 
+function updateGiscusTheme() {
+	const iframe = document.querySelector('iframe.giscus-frame') as HTMLIFrameElement;
+	if (!iframe) return;
+
+	const isDark = document.documentElement.classList.contains('dark');
+	const theme = isDark ? 'dark' : 'light';
+	
+	iframe.contentWindow?.postMessage(
+		{ giscus: { setConfig: { theme } } },
+		'https://giscus.app'
+	);
+}
+
 function switchScheme(newMode: LIGHT_DARK_MODE) {
 	mode = newMode;
 	setTheme(newMode);
+	// 立即同步更新giscus主题
+	setTimeout(updateGiscusTheme, 0);
 }
 
 function toggleScheme() {
