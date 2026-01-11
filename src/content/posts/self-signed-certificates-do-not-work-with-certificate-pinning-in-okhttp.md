@@ -3,7 +3,7 @@ title: 在OkHTTP中自签名证书无法使用证书钉扎
 published: 2025-05-05
 description: '由于OkHTTP增加了额外的约束，使得我们无法在使用自定义TrustManagers的情况下使用证书钉扎(Certificate Pinning)'
 image: ''
-tags: []
+tags: [OKHTTP]
 category: '踩坑'
 draft: false 
 lang: ''
