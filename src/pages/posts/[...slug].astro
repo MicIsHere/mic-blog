@@ -205,16 +205,16 @@ const jsonLd = {
                 }
 
                 // 确保DOM加载完成后再加载giscus
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', loadGiscus);
-                } else {
-                    loadGiscus();
-                }
-
-                // 监听系统主题变化（适用于AUTO_MODE）
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-                    setTimeout(updateGiscusTheme, 50);
-                });
+                // if (document.readyState === 'loading') {
+                //     document.addEventListener('DOMContentLoaded', loadGiscus);
+                // } else {
+                //     loadGiscus();
+                // }
+                //
+                // // 监听系统主题变化（适用于AUTO_MODE）
+                // window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                //     setTimeout(updateGiscusTheme, 50);
+                // });
             </script>
 
             <br />

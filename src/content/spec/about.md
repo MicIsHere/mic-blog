@@ -5,12 +5,11 @@
 尝试使用如 **Edge、Chrome** 等浏览器的最新版进入。
 :::
 ## 关于我
-这里是Mic，有时候大家叫我猫猫。位于中国，目前是一名在读高中生。  
+这里是Mic，有时候大家叫我猫猫。位于中国。  
 我对编程很感兴趣，目前主技术栈是Kotlin和Java，偶尔会写Vue和Python，自学了部分UI及前端的设计。
 
 如果你想的话，可以通过下面的联系方式找到我:  
-Email: ```echo 'dHQ0MDJAb3V0bG9vay5jb20=' | base64 -d```  
-Discord: IsNotCuteMic#2404
+Email: ```echo 'dHQ0MDJAb3V0bG9vay5jb20=' | base64 -d```
 
 ## 后日谈
 这个博客是第三次重建，前两次因为忘了/懒/~~没钱续费~~服务器导致数据丢失。  
