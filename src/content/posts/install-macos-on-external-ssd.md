@@ -3,8 +3,8 @@ title: 将MacOS安装到外置硬盘中的部分踩坑
 published: 2026-02-19
 description: ''
 image: 'https://img.miku.ren/i/2026/02/19/6996f1742f523.png'
-tags: []
-category: ''
+tags: [MacOS]
+category: '踩坑'
 draft: false 
 lang: ''
 ---
