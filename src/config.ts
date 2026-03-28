@@ -17,7 +17,7 @@ export const siteConfig: SiteConfig = {
 	},
 	banner: {
 		enable: true,
-		src: 'https://img.miku.ren/i/2025/03/09/67cd586eb850d.jpg',   // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		src: 'https://cdn.imgos.cn/vip/2026/03/28/69c7e63a0f1f2.jpg',   // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 		position: 'center',      // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
 			enable: true,         // Display the credit text of the banner image

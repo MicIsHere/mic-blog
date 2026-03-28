@@ -2,7 +2,7 @@
 title: 修复 TrueNas 无法获取应用程序列表
 published: 2025-03-09
 description: '如何修复 TrueNas 在线获取应用程序列表时出现错误:  Failed to clone https://github.com/truenas/apps repository at...'
-image: 'https://img.miku.ren/i/2025/03/09/67cd6da5d7e0b.png'
+image: 'https://cdn.imgos.cn/vip/2026/03/28/69c7e73c98266.png'
 tags: [TrueNas]
 category: '教程'
 draft: false 
@@ -17,7 +17,7 @@ lang: ''
 ## 前言
 从黑群晖转到了 TrueNas，安装好后发现获取不到应用列表，网上找了很多方法都没有用。  
 结果在测 Nas 网络连通性的时候发现不太对。  
-![?](https://img.miku.ren/i/2025/03/09/67cd70c710d15.png)
+![?](https://cdn.imgos.cn/vip/2026/03/28/69c7e73c44f6e.png)
 
 ## 解决办法
 进入 网络 - 全局配置 - 设置 - DNS服务器  

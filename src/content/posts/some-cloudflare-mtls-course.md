@@ -2,7 +2,7 @@
 title: 基于 Cloudflare mTLS 如何使用的部分教程
 published: 2026-01-11
 description: 'mutual TLS 简称 mTLS，是一种相互身份验证的方法，提供了额外的验证。关于 Cloudflare mTLS 如何使用的部分教程/踩坑'
-image: 'https://img.miku.ren/i/2026/01/11/696357f7efb61.webp'
+image: 'https://cdn.imgos.cn/vip/2026/03/28/69c7e7bdcb7eb.webp'
 tags: [Cloudflare, mTLS]
 category: '教程'
 draft: false 

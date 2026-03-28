@@ -2,7 +2,7 @@
 title: MacOS 如何将Sublime Text作为文件默认打开方式
 published: 2026-02-04
 description: ''
-image: 'https://img.miku.ren/i/2026/02/04/6983583328617.png'
+image: 'https://cdn.imgos.cn/vip/2026/03/28/69c7e80a387c8.png'
 tags: [DUTI, MacOS, Sublime Text]
 category: '教程'
 draft: false 
