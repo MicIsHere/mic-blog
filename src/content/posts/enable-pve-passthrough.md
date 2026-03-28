@@ -1,5 +1,5 @@
 ---
-title: 显卡直通的部分踩坑
+title: PVE显卡直通的部分踩坑
 published: 2026-03-28
 description: '仅记录了个人配置时的踩的一些坑，后续文章可能会有更新。'
 image: 'https://cdn.imgos.cn/vip/2026/03/28/69c7efc86453b.png'
