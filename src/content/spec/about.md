@@ -1,5 +1,5 @@
 # 关于
-:::caution[可能无法正常显示]
+:::caution[无法正常显示本站?]
 部分浏览器可能无法正常显示本站布局， 这是由于其内核版本过低导致的。  
 尝试使用如 **Edge、Chrome** 等最新版浏览器进入。
 :::
@@ -13,7 +13,10 @@ Email: ```echo 'dHQ0MDJAb3V0bG9vay5jb20=' | base64 -d```
 ## 后日谈
 这个博客是第三次重建，前两次因为忘了/懒/~~没钱续费~~服务器导致数据丢失。  
 最后发现还是用 Vercel 部署能坚持最久，以后可能会在这边重新写一份原来的文章。  
-现在迁移到了 EdgeOne Page 并进行了备案，国内访问应该会更快。  
-本站使用了 [Fuwari](https://github.com/saicaca/fuwari) 作为模板，这个配色跟 BA 很搭！
-
+本站使用了 [Fuwari](https://github.com/saicaca/fuwari) 作为模板，这个配色跟 BA 很搭！  
 ::github{repo="saicaca/fuwari"}
+---
+## 更新日志
+**_这里就用来记录一些更新日志吧_**  
+**2026.1.23:** 进行备案并迁移到了 EdgeOne Page，国内访问应该会更快。  
+**2026.3.28:** 更换了图床 (picui.cn)，解决因CORS导致的图片加载问题
