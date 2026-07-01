@@ -3,8 +3,6 @@
 import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
 import { profileConfig, siteConfig } from "../config";
-import I18nKey from "../i18n/i18nKey";
-import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 
 const aboutPost = await getEntry("spec", "about");
@@ -15,7 +13,7 @@ if (!aboutPost) {
 
 const { Content } = await render(aboutPost);
 const aboutTitle = `关于 ${profileConfig.name} 与 ${siteConfig.title}`;
-const aboutDescription = `了解 ${profileConfig.name}、${siteConfig.title} 的建站背景、技术兴趣、联系方式以及博客更新记录。`;
+const aboutDescription = `了解 ${profileConfig.name} 和 ${siteConfig.title}的建站背景、技术兴趣、联系方式、博客重建经历、近期更新记录以及站点维护情况。`;
 ---
 <MainGridLayout title={aboutTitle} description={aboutDescription}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">

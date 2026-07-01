@@ -46,11 +46,12 @@ const dateModified = formatDateToYYYYMMDD(
 );
 const rawPostDescription =
 	entry.data.description || remarkPluginFrontmatter.excerpt || entry.data.title;
+const cleanRawPostDescription = rawPostDescription.replace(/[，,。.\s]+$/, "");
 const postDescription =
 	rawPostDescription.length >= 70
 		? rawPostDescription
 		: [
-				rawPostDescription,
+				cleanRawPostDescription,
 				`本文发布于 ${datePublished}`,
 				articleSection && `属于「${articleSection}」分类`,
 				articleTags.length > 0 && `标签包括 ${articleTags.join("、")}`,

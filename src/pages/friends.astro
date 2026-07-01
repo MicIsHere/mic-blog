@@ -12,7 +12,7 @@ const friends = Object.values(
 	}),
 );
 const friendsTitle = "友情链接与站点推荐";
-const friendsDescription = `${siteConfig.title} 的友情链接页面，收录朋友们的个人网站、主页和推荐站点，也提供友链申请信息。`;
+const friendsDescription = `${siteConfig.title}的友情链接页面，收录朋友们的个人网站、主页和推荐站点，并提供友链申请说明与站点展示信息。`;
 
 const breadcrumbSchema = {
 	"@context": "https://schema.org",
@@ -27,7 +27,7 @@ const breadcrumbSchema = {
 		{
 			"@type": "ListItem",
 			position: 2,
-			name: "友链",
+			name: friendsTitle,
 			item: new URL("/friends", Astro.site).toString(),
 		},
 	],
