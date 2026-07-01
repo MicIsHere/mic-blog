@@ -44,8 +44,20 @@ const datePublished = formatDateToYYYYMMDD(entry.data.published);
 const dateModified = formatDateToYYYYMMDD(
 	entry.data.updated ?? entry.data.published,
 );
-const postDescription =
+const rawPostDescription =
 	entry.data.description || remarkPluginFrontmatter.excerpt || entry.data.title;
+const postDescription =
+	rawPostDescription.length >= 70
+		? rawPostDescription
+		: [
+				rawPostDescription,
+				`本文发布于 ${datePublished}`,
+				articleSection && `属于「${articleSection}」分类`,
+				articleTags.length > 0 && `标签包括 ${articleTags.join("、")}`,
+				`主要记录「${entry.data.title}」的实践过程、问题背景和解决思路`,
+			]
+				.filter(Boolean)
+				.join("，");
 
 const jsonLd = {
 	"@context": "https://schema.org",

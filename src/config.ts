@@ -10,6 +10,7 @@ import { LinkPreset } from "./types/config";
 export const siteConfig: SiteConfig = {
 	title: 'Mic的博客',
 	subtitle: 'Mic.Run 日常/技术/动漫',
+	description: 'Mic.Run 是 Mic 的个人博客，记录技术教程、运维踩坑、日常折腾和动漫相关内容，分享真实问题的解决过程与实践经验。',
 	keywords: ['Mic.Run', 'Mic的博客', '个人博客', '技术', '教程', '日常', '动漫', '二次元', '安全'],
 	lang: 'zh_CN',         // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
 	themeColor: {

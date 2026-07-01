@@ -11,6 +11,8 @@ const friends = Object.values(
 		import: "default",
 	}),
 );
+const friendsTitle = "友情链接与站点推荐";
+const friendsDescription = `${siteConfig.title} 的友情链接页面，收录朋友们的个人网站、主页和推荐站点，也提供友链申请信息。`;
 
 const breadcrumbSchema = {
 	"@context": "https://schema.org",
@@ -32,14 +34,14 @@ const breadcrumbSchema = {
 };
 ---
 
-<MainGridLayout title="友链" description={`${siteConfig.title} 的友情链接`}>
+<MainGridLayout title={friendsTitle} description={friendsDescription}>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
     <div class="card-base p-6 md:p-8">
         <div class="flex items-center gap-2 mb-6">
             <div class="h-8 w-8 rounded-lg bg-[var(--primary)] flex items-center justify-center text-black/70">
                 <Icon name="material-symbols:diversity-3" class="text-[1.5rem]" />
             </div>
-            <h1 class="text-2xl font-bold text-90">友链</h1>
+            <h1 class="text-2xl font-bold text-90">{friendsTitle}</h1>
         </div>
 
         <!-- 申请友链 -->

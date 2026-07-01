@@ -83,7 +83,8 @@ const rssUrl = new URL("rss.xml", siteHomeUrl).toString();
 const absoluteUrl = (value: string) => new URL(value, siteUrl).toString();
 const toIsoString = (value?: Date | string) =>
 	value ? new Date(value).toISOString() : undefined;
-const pageDescription = description?.trim() || siteConfig.subtitle || pageTitle;
+const pageDescription =
+	description?.trim() || siteConfig.description || siteConfig.subtitle || pageTitle;
 const keywordSource = Array.isArray(keywords) ? keywords : keywords?.split(",");
 const pageKeywords = Array.from(
 	new Set(

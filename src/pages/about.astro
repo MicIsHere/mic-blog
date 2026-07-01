@@ -14,8 +14,10 @@ if (!aboutPost) {
 }
 
 const { Content } = await render(aboutPost);
+const aboutTitle = `关于 ${profileConfig.name} 与 ${siteConfig.title}`;
+const aboutDescription = `了解 ${profileConfig.name}、${siteConfig.title} 的建站背景、技术兴趣、联系方式以及博客更新记录。`;
 ---
-<MainGridLayout title={i18n(I18nKey.about)} description={`关于 ${profileConfig.name} 和 ${siteConfig.title}`}>
+<MainGridLayout title={aboutTitle} description={aboutDescription}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full ">
             <Markdown class="mt-2">
