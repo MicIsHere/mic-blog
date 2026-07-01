@@ -25,10 +25,32 @@ interface Props {
 	banner?: string;
 	description?: string;
 	lang?: string;
+	keywords?: string[] | string;
+	image?: string;
 	setOGTypeArticle?: boolean;
+	articlePublishedTime?: Date | string;
+	articleModifiedTime?: Date | string;
+	articleTags?: string[];
+	articleSection?: string | null;
+	prevUrl?: string;
+	nextUrl?: string;
 }
 
-let { title, banner, description, lang, setOGTypeArticle } = Astro.props;
+let {
+	title,
+	banner,
+	description,
+	lang,
+	keywords,
+	image,
+	setOGTypeArticle,
+	articlePublishedTime,
+	articleModifiedTime,
+	articleTags,
+	articleSection,
+	prevUrl,
+	nextUrl,
+} = Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
 // Swup can update the body for each page visit, but it's after the page transition, causing a delay for banner height change
@@ -54,6 +76,39 @@ if (title) {
 	pageTitle = `${siteConfig.title} - ${siteConfig.subtitle}`;
 }
 
+const siteUrl = Astro.site ?? Astro.url.origin;
+const siteHomeUrl = new URL("/", siteUrl).toString();
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const rssUrl = new URL("rss.xml", siteHomeUrl).toString();
+const absoluteUrl = (value: string) => new URL(value, siteUrl).toString();
+const toIsoString = (value?: Date | string) =>
+	value ? new Date(value).toISOString() : undefined;
+const pageDescription = description?.trim() || siteConfig.subtitle || pageTitle;
+const keywordSource = Array.isArray(keywords) ? keywords : keywords?.split(",");
+const pageKeywords = Array.from(
+	new Set(
+		[
+			...siteConfig.keywords,
+			...(keywordSource ?? []),
+			...(title ? [title] : []),
+		]
+			.map((keyword) => keyword.trim())
+			.filter(Boolean),
+	),
+).join(", ");
+const socialImage = absoluteUrl(image || banner || siteConfig.banner.src);
+const socialImageAlt = title
+	? `${title} - ${siteConfig.title}`
+	: `${siteConfig.title} banner`;
+const previousUrl = prevUrl ? absoluteUrl(prevUrl) : undefined;
+const followingUrl = nextUrl ? absoluteUrl(nextUrl) : undefined;
+const articlePublishedIso = toIsoString(articlePublishedTime);
+const articleModifiedIso = toIsoString(articleModifiedTime);
+const cleanArticleTags = (articleTags ?? [])
+	.map((tag) => tag.trim())
+	.filter(Boolean);
+const cleanArticleSection = articleSection?.trim();
+
 const favicons: Favicon[] =
 	siteConfig.favicon.length > 0 ? siteConfig.favicon : defaultFavicons;
 
@@ -62,6 +117,51 @@ if (!lang) {
 	lang = `${siteConfig.lang}`;
 }
 const siteLang = lang.replace("_", "-");
+const openGraphLocale = lang.replace("-", "_");
+const structuredData = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Person",
+			"@id": `${siteHomeUrl}#person`,
+			name: profileConfig.name,
+			url: siteHomeUrl,
+			...(profileConfig.links.length > 0
+				? { sameAs: profileConfig.links.map((link) => link.url) }
+				: {}),
+			...(profileConfig.avatar
+				? { image: absoluteUrl(profileConfig.avatar) }
+				: {}),
+		},
+		{
+			"@type": "WebSite",
+			"@id": `${siteHomeUrl}#website`,
+			url: siteHomeUrl,
+			name: siteConfig.title,
+			alternateName: siteConfig.subtitle,
+			inLanguage: siteLang,
+			publisher: {
+				"@id": `${siteHomeUrl}#person`,
+			},
+		},
+		{
+			"@type": "WebPage",
+			"@id": `${canonicalUrl}#webpage`,
+			url: canonicalUrl,
+			name: pageTitle,
+			description: pageDescription,
+			inLanguage: siteLang,
+			isPartOf: {
+				"@id": `${siteHomeUrl}#website`,
+			},
+			primaryImageOfPage: {
+				"@type": "ImageObject",
+				url: socialImage,
+				caption: socialImageAlt,
+			},
+		},
+	],
+};
 
 const bannerOffsetByPosition = {
 	top: `${BANNER_HEIGHT_EXTEND}vh`,
@@ -79,25 +179,53 @@ const bannerOffset =
 	<head>
 
 		<title>{pageTitle}</title>
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="alternate" hreflang={siteLang} href={canonicalUrl} />
+		<link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+		{previousUrl && <link rel="prev" href={previousUrl} />}
+		{followingUrl && <link rel="next" href={followingUrl} />}
 
 		<meta charset="UTF-8" />
-		<meta name="description" content={description || pageTitle}>
+		<meta name="description" content={pageDescription}>
+		<meta name="keywords" content={pageKeywords}>
 		<meta name="author" content={profileConfig.name}>
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
 		<meta property="og:site_name" content={siteConfig.title}>
-		<meta property="og:url" content={Astro.url}>
+		<meta property="og:url" content={canonicalUrl}>
 		<meta property="og:title" content={pageTitle}>
-		<meta property="og:description" content={description || pageTitle}>
+		<meta property="og:description" content={pageDescription}>
+		<meta property="og:image" content={socialImage}>
+		<meta property="og:image:secure_url" content={socialImage}>
+		<meta property="og:image:alt" content={socialImageAlt}>
+		<meta property="og:locale" content={openGraphLocale}>
 		{setOGTypeArticle ? (
         <meta property="og:type" content="article" />
         ) : (
         <meta property="og:type" content="website" />
         )}
+		{setOGTypeArticle && articlePublishedIso && (
+			<meta property="article:published_time" content={articlePublishedIso} />
+		)}
+		{setOGTypeArticle && articleModifiedIso && (
+			<meta property="article:modified_time" content={articleModifiedIso} />
+		)}
+		{setOGTypeArticle && (
+			<meta property="article:author" content={profileConfig.name} />
+		)}
+		{setOGTypeArticle && cleanArticleSection && (
+			<meta property="article:section" content={cleanArticleSection} />
+		)}
+		{setOGTypeArticle && cleanArticleTags.map((tag) => (
+			<meta property="article:tag" content={tag} />
+		))}
 
 		<meta name="twitter:card" content="summary_large_image">
-		<meta property="twitter:url" content={Astro.url}>
+		<meta property="twitter:url" content={canonicalUrl}>
 		<meta name="twitter:title" content={pageTitle}>
-		<meta name="twitter:description" content={description || pageTitle}>
+		<meta name="twitter:description" content={pageDescription}>
+		<meta name="twitter:image" content={socialImage}>
+		<meta name="twitter:image:alt" content={socialImageAlt}>
 
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
@@ -106,8 +234,10 @@ const bannerOffset =
 				  href={favicon.src.startsWith('/') ? url(favicon.src) : favicon.src}
 				  sizes={favicon.sizes}
 				  media={favicon.theme && `(prefers-color-scheme: ${favicon.theme})`}
+				  type={favicon.src.endsWith(".ico") ? "image/x-icon" : undefined}
 			/>
 		))}
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
 
 		<!-- Set the theme before the page is rendered to avoid a flash -->
 		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, BANNER_HEIGHT_EXTEND, PAGE_WIDTH, configHue}}>
@@ -145,7 +275,7 @@ const bannerOffset =
 
 		<slot name="head"></slot>
 
-		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
+		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={rssUrl}/>
 
 	</head>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}

@@ -8,8 +8,9 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: 'Mic.Run',
-	subtitle: '麦克风.马上跑路',
+	title: 'Mic的博客',
+	subtitle: 'Mic.Run 日常/技术/动漫',
+	keywords: ['Mic.Run', 'Mic的博客', '个人博客', '技术', '教程', '日常', '动漫', '二次元', '安全'],
 	lang: 'zh_CN',         // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
 	themeColor: {
 		hue: 250,         // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -32,7 +33,7 @@ export const siteConfig: SiteConfig = {
 	favicon: [
 		// Leave this array empty to use the default favicon
 		{
-		  src: '/favicon/icon.png',    // Path of the favicon, relative to the /public directory
+		  src: '/favicon/icon.ico',    // Path of the favicon, relative to the /public directory
 		  // theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
 		  // sizes: '64x64',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
 		}

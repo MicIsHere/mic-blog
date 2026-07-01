@@ -32,7 +32,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<MainGridLayout title="友链">
+<MainGridLayout title="友链" description={`${siteConfig.title} 的友情链接`}>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
     <div class="card-base p-6 md:p-8">
         <div class="flex items-center gap-2 mb-6">
